@@ -1,0 +1,36 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: lamp-ingress
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target:  /
+  namespace: lamp-dev
+spec:
+  rules:
+  - host: "lamp-apache.com"
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: apachephp-service
+            port:
+              number: 80
+  - host: "lamp-phpmyadmin.com"
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: phpmyadmin-service
+            port:
+              number: 80
+      #- path: /phpmyadmin
+        #pathType: Prefix
+        #backend:
+          #service:
+            #name: phpmyadmin-service
+            #port:
+              #number: 80

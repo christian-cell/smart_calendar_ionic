@@ -1,0 +1,6 @@
+{
+	"appId": "io.ionic.starter",
+	"appName": "smart_front",
+	"webDir": "www",
+	"bundledWebRuntime": false
+}
