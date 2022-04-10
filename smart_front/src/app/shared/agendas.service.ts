@@ -12,7 +12,7 @@ export class AgendasService {
   GetAgendasGata(){
     
 
-    return this.http.get(`${environment.url}/agenda.php`,
+    return this.http.get(`${environment.url}/agenda/agenda.php`,
       {responseType:'text'}
     )
 

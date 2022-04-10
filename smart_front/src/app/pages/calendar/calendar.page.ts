@@ -6,6 +6,7 @@ import { formatDate } from '@angular/common';
 import { CalModalPage } from '../cal-modal/cal-modal.page';
 import { Component, ViewChild, OnInit, Inject, LOCALE_ID } from '@angular/core';
 import { AgendasService } from 'src/app/shared/agendas.service';
+import { connectableObservableDescriptor } from 'rxjs/internal/observable/ConnectableObservable';
 
 /* 
   import { CalendarComponent } from 'ionic2-calendar/calendar';
@@ -41,7 +42,7 @@ export class CalendarPage implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.GetAgenda();
+    this.GetAgenda()  /* this.createRandomEvents() */  ;
   }
 
   next() {
@@ -74,8 +75,19 @@ export class CalendarPage implements OnInit {
 
   GetAgenda(){
     this.agendaService.GetAgendasGata().subscribe((res:any)=>{
-      console.log(res.data);
-      this.eventSource = res.data;
+      console.log(JSON.parse(res));
+      let respuesta = JSON.parse(res);
+      
+      for (let i = 0; i < respuesta.length; i++) {
+
+        respuesta[i].startTime = new Date(respuesta[i].startTime);
+        respuesta[i].endTime = new Date(respuesta[i].endTime);
+        // respuesta[i].date = new Date(respuesta[i].date);
+        
+      }
+
+      console.log(respuesta)
+      this.eventSource = respuesta /* JSON.parse(res) */;
     })
 
     /* console.log(especialista);
@@ -86,7 +98,7 @@ export class CalendarPage implements OnInit {
     }); */
   }
  
-  /* createRandomEvents() {
+  createRandomEvents() {
     var events = [];
     for (var i = 0; i < 50; i += 1) {
       var date = new Date();
@@ -121,6 +133,7 @@ export class CalendarPage implements OnInit {
         });
       } else {
         var startMinute = Math.floor(Math.random() * 24 * 60);
+
         var endMinute = Math.floor(Math.random() * 180) + startMinute;
         startTime = new Date(
           date.getFullYear(),
@@ -144,8 +157,9 @@ export class CalendarPage implements OnInit {
         });
       }
     }
+    console.log(events)
     this.eventSource = events;
-  } */
+  } 
 
 
  
