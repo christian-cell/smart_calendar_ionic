@@ -27,7 +27,7 @@ export class CalendarPage implements OnInit {
   viewTitle: string;
  
   calendar = {
-    mode: 'month',
+    mode: 'week',
     /* mode: 'week' as CalendarMode, */
     currentDate: new Date(),
   };
@@ -73,7 +73,46 @@ export class CalendarPage implements OnInit {
       message: 'From: ' + start + '<br><br>To: ' + end,
       buttons: ['OK'],
     });
-    alert.present();
+    alert.present(); 
+  }
+
+  async openCalModal(event?) {
+
+    console.log(event);
+
+    const modal = await this.modalCtrl.create({
+      component: CalModalPage,
+      cssClass: 'cal-modal',
+      backdropDismiss: false
+    });
+   
+    await modal.present();
+   
+    modal.onDidDismiss().then((result) => {
+      console.log(result);
+      if (result.data && result.data.event) {
+        let event = result.data.event;
+        if (event.allDay) {
+          let start = event.startTime;
+          event.startTime = new Date(
+            Date.UTC(
+              start.getUTCFullYear(),
+              start.getUTCMonth(),
+              start.getUTCDate()
+            )
+          );
+          event.endTime = new Date(
+            Date.UTC(
+              start.getUTCFullYear(),
+              start.getUTCMonth(),
+              start.getUTCDate() + 1
+            )
+          );
+        }
+        this.eventSource.push(result.data.event);
+        this.myCal.loadEvents();
+      }
+    }); 
   }
 
   GetAgenda(){
@@ -98,6 +137,8 @@ export class CalendarPage implements OnInit {
       this.calendarOptions.events = JSON.parse(this.agendasArr);
     }); */
   }
+
+ 
  
   /* createRandomEvents() {
     var events = [];
