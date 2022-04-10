@@ -2,6 +2,7 @@
 // import { CalendarComponent } from 'ionic2-calendar/calendar';
 import { CalendarComponent } from 'ionic2-calendar';
 import { AlertController, ModalController } from '@ionic/angular';
+import { CalendarMode } from 'ionic2-calendar/calendar';
 import { formatDate } from '@angular/common';
 import { CalModalPage } from '../cal-modal/cal-modal.page';
 import { Component, ViewChild, OnInit, Inject, LOCALE_ID } from '@angular/core';
@@ -27,6 +28,7 @@ export class CalendarPage implements OnInit {
  
   calendar = {
     mode: 'month',
+    /* mode: 'week' as CalendarMode, */
     currentDate: new Date(),
   };
 
@@ -42,7 +44,8 @@ export class CalendarPage implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.GetAgenda()  /* this.createRandomEvents() */  ;
+    
+    this.GetAgenda();
   }
 
   next() {
@@ -79,15 +82,13 @@ export class CalendarPage implements OnInit {
       let respuesta = JSON.parse(res);
       
       for (let i = 0; i < respuesta.length; i++) {
-
         respuesta[i].startTime = new Date(respuesta[i].startTime);
         respuesta[i].endTime = new Date(respuesta[i].endTime);
-        // respuesta[i].date = new Date(respuesta[i].date);
-        
+        this.eventSource.push(respuesta[i]);
       }
 
       console.log(respuesta)
-      this.eventSource = respuesta /* JSON.parse(res) */;
+      /* this.eventSource = respuesta */  /* JSON.parse(res) */;
     })
 
     /* console.log(especialista);
@@ -98,9 +99,9 @@ export class CalendarPage implements OnInit {
     }); */
   }
  
-  createRandomEvents() {
+  /* createRandomEvents() {
     var events = [];
-    for (var i = 0; i < 50; i += 1) {
+    for (var i = 0; i < 5 ; i += 1) {
       var date = new Date();
       var eventType = Math.floor(Math.random() * 2);
       var startDay = Math.floor(Math.random() * 90) - 45;
@@ -159,7 +160,7 @@ export class CalendarPage implements OnInit {
     }
     console.log(events)
     this.eventSource = events;
-  } 
+  } */   
 
 
  
