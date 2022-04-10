@@ -18,6 +18,18 @@ const routes: Routes = [
   {
     path: 'cal-modal',
     loadChildren: () => import('./pages/cal-modal/cal-modal.module').then( m => m.CalModalPageModule)
+  },
+  {
+    path: 'configuracion',
+    loadChildren: () => import('./pages/configuracion/configuracion.module').then( m => m.ConfiguracionPageModule)
+  },
+  /* {
+    path: 'agenda-edit-popover',
+    loadChildren: () => import('./pages/agenda-edit-popover/agenda-edit-popover.module').then( m => m.AgendaEditPopoverPageModule)
+  } ,*/
+  {
+    path: 'agenda-edit',
+    loadChildren: () => import('./modals/agenda-edit/agenda-edit.module').then( m => m.AgendaEditPageModule)
   }
 ];
 

@@ -1,4 +1,4 @@
-import { Component, AfterViewInit } from '@angular/core';
+import { Component, AfterViewInit, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 
 @Component({
@@ -7,8 +7,16 @@ import { ModalController } from '@ionic/angular';
   styleUrls: ['./cal-modal.page.scss'],
 })
 
+export class CalModalPage implements OnInit {
+  constructor() {}
 
-export class CalModalPage implements AfterViewInit {
+  ngOnInit() {
+    
+    // this.GetAgenda();
+  }
+}
+
+/* export class CalModalPage implements AfterViewInit {
   calendar = {
     mode: 'month',
     currentDate: new Date()
@@ -48,4 +56,4 @@ export class CalModalPage implements AfterViewInit {
   close() {
     this.modalCtrl.dismiss();
   }
-}
+} */

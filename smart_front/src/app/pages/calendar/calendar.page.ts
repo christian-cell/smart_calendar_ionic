@@ -8,6 +8,12 @@ import { CalModalPage } from '../cal-modal/cal-modal.page';
 import { Component, ViewChild, OnInit, Inject, LOCALE_ID } from '@angular/core';
 import { AgendasService } from 'src/app/shared/agendas.service';
 import { connectableObservableDescriptor } from 'rxjs/internal/observable/ConnectableObservable';
+import { PopoverController } from '@ionic/angular';
+import { AgendaEditPage } from 'src/app/modals/agenda-edit/agenda-edit.page';
+
+
+
+
 
 /* 
   import { CalendarComponent } from 'ionic2-calendar/calendar';
@@ -40,7 +46,9 @@ export class CalendarPage implements OnInit {
     private alertCtrl: AlertController,
     @Inject(LOCALE_ID) private locale: string, 
     private modalCtrl: ModalController,
-    private agendaService : AgendasService
+    private agendaService : AgendasService,
+    public popoverController: PopoverController,
+    public modalController: ModalController
   ) { }
 
   ngOnInit() {
@@ -62,57 +70,46 @@ export class CalendarPage implements OnInit {
   }
  
   // Calendar event was clicked
-  async onEventSelected(event) {
-    // Use Angular date pipe for conversion
-    let start = formatDate(event.startTime, 'medium', this.locale);
-    let end = formatDate(event.endTime, 'medium', this.locale);
- 
-    const alert = await this.alertCtrl.create({
-      header: event.title,
-      subHeader: event.desc,
-      message: 'From: ' + start + '<br><br>To: ' + end,
-      buttons: ['OK'],
-    });
-    alert.present(); 
-  }
+  async onEventSelected(ev) {
 
-  async openCalModal(event?) {
-
-    console.log(event);
-
-    const modal = await this.modalCtrl.create({
-      component: CalModalPage,
-      cssClass: 'cal-modal',
-      backdropDismiss: false
-    });
-   
-    await modal.present();
-   
-    modal.onDidDismiss().then((result) => {
-      console.log(result);
-      if (result.data && result.data.event) {
-        let event = result.data.event;
-        if (event.allDay) {
-          let start = event.startTime;
-          event.startTime = new Date(
-            Date.UTC(
-              start.getUTCFullYear(),
-              start.getUTCMonth(),
-              start.getUTCDate()
-            )
-          );
-          event.endTime = new Date(
-            Date.UTC(
-              start.getUTCFullYear(),
-              start.getUTCMonth(),
-              start.getUTCDate() + 1
-            )
-          );
-        }
-        this.eventSource.push(result.data.event);
-        this.myCal.loadEvents();
+    const modal = await this.modalController.create({
+      component: AgendaEditPage,
+      componentProps: {
+        "id_agenda": ev.id_agenda,
+        "id_especialista": ev.id_especialista,
+        "title": ev.title,
+        "startTime": ev.startTime,
+        "endTime": ev.endTime,
+        "motivo": ev.motivo,
+        "especialista": ev.especialista,
+        "color": ev.color
       }
-    }); 
+    });
+
+    modal.onDidDismiss().then((dataReturned) => {
+      /* if (dataReturned !== null) {
+        this.dataReturned = dataReturned.data;
+        
+      } */
+    });
+
+    return await modal.present();
+
+    /* const popover = await this.popoverController.create({
+      component: AgendaEditPopoverPage,
+      componentProps:{
+        id_agenda : ev.id_agenda
+      },
+      cssClass: 'my-custom-class',
+      event: ev,
+      translucent: true
+    });
+    await popover.present();
+  
+    const { role } = await popover.onDidDismiss();
+    console.log('onDidDismiss resolved with role', role); */
+
+    
   }
 
   GetAgenda(){
@@ -203,6 +200,57 @@ export class CalendarPage implements OnInit {
     this.eventSource = events;
   } */   
 
+
+  // Use Angular date pipe for conversion
+    /* let start = formatDate(event.startTime, 'medium', this.locale);
+    let end = formatDate(event.endTime, 'medium', this.locale);
+ 
+    const alert = await this.alertCtrl.create({
+      header: event.title,
+      subHeader: event.desc,
+      message: 'From: ' + start + '<br><br>To: ' + end,
+      buttons: ['OK'],
+    });
+    alert.present(); 
+  }
+
+  async openCalModal(event?) { */
+
+    /* console.log(event);
+
+    const modal = await this.modalCtrl.create({
+      component: CalModalPage,
+      cssClass: 'cal-modal',
+      backdropDismiss: false
+    });
+   
+    await modal.present();
+   
+    modal.onDidDismiss().then((result) => {
+      console.log(result);
+      if (result.data && result.data.event) {
+        let event = result.data.event;
+        if (event.allDay) {
+          let start = event.startTime;
+          event.startTime = new Date(
+            Date.UTC(
+              start.getUTCFullYear(),
+              start.getUTCMonth(),
+              start.getUTCDate()
+            )
+          );
+          event.endTime = new Date(
+            Date.UTC(
+              start.getUTCFullYear(),
+              start.getUTCMonth(),
+              start.getUTCDate() + 1
+            )
+          );
+        }
+        this.eventSource.push(result.data.event);
+        this.myCal.loadEvents();
+      }
+    });  */
 
  
   removeEvents() {

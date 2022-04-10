@@ -71,11 +71,13 @@ class Agenda {
       $events[$fila]['startTime'] = $dato['fecha']. " " .$dato['hora'];
       $events[$fila]['endTime'] = $dato['fecha']. " " .$dato['hora_fin'];
       $events[$fila]['allDay'] = false;
-      /* $events[$fila]['id'] = $dato['id_agenda'];
-      $events[$fila]['especialista_id'] = $dato['id_especialista'];
+      $events[$fila]['id_agenda'] = $dato['id_agenda'];
+      $events[$fila]['id_especialista'] = $dato['id_especialista'];
       $events[$fila]['especialista'] = $dato['especialista'];
       $events[$fila]['color'] = $dato['color'];
-      $events[$fila]['motivo'] = $dato['notas'];  */
+      $events[$fila]['motivo'] = $dato['notas'];
+      /* 
+      ;  */
 
       $fila++;
   
