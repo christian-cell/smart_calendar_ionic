@@ -2,7 +2,7 @@
 
 /* POO */
 
-namespace smartCalendar;
+namespace website\conexion;
 
 class Conexion {
 

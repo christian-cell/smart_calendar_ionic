@@ -7,11 +7,20 @@ const routes: Routes = [
   {
     path: '',
     component: ConfiguracionPage
+  },
+  {
+    path: 'especialista-nuevo',
+    loadChildren: () => import('./especialista-nuevo/especialista-nuevo.module').then( m => m.EspecialistaNuevoPageModule)
+  },
+  {
+    path: 'tarea-nueva',
+    loadChildren: () => import('./tarea-nueva/tarea-nueva.module').then( m => m.TareaNuevaPageModule)
   }
 ];
 
 @NgModule({
-  imports: [RouterModule.forChild(routes)],
+  imports: [
+    RouterModule.forChild(routes)  ],
   exports: [RouterModule],
 })
 export class ConfiguracionPageRoutingModule {}

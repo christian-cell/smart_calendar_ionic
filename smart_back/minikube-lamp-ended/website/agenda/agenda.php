@@ -1,7 +1,7 @@
 <?php
 
-namespace smartCalendar;
-use smartCalendar\Conexion;
+namespace website\agenda\agenda;
+use website\conexion\Conexion;
 require_once('../cors.php');
 require_once("../conexion.php");
 

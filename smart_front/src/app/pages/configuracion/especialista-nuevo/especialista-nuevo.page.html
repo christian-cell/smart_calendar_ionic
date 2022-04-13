@@ -1,0 +1,48 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>especialista_nuevo</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+
+  <form (ngSubmit)="CreateEspecialista(form)" #form="ngForm">
+
+    <ion-item>
+    <ion-label position="fixed">Especialista</ion-label>
+    <ion-input name="especialista" ngModel 
+    clearInput value="nombre" ></ion-input>
+    </ion-item>
+
+    <ion-item>
+    <ion-label position="fixed">Colegiado</ion-label>
+    <ion-input name="colegiado" ngModel 
+    clearInput value="numero" ></ion-input>
+    </ion-item>
+
+    <ion-item>
+    <ion-label position="fixed">E-mail</ion-label>
+    <ion-input  name="e_mail" ngModel 
+    clearInput value="jhon@gmail.com" ></ion-input>
+    </ion-item>
+
+    <ion-item>
+    <ion-label position="fixed">Telefono</ion-label>
+    <ion-input name="movil" ngModel 
+    clearInput value="666666666" ></ion-input>
+    </ion-item>
+
+    <ion-item>
+    <ion-label position="fixed">Color</ion-label>
+    <input name="color" ngModel type="color">
+    </ion-item>
+
+    <button type="submit"class="btn btn-primary">Añadir</button>
+
+  </form>
+
+</ion-content>
