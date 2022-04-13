@@ -17,10 +17,8 @@ class Agenda {
   public function createCondition()
   {
     $this->conditional_query = "";
-
     if(isset($especialista) && $especialista !== "Todos") $this->conditional_query."AND E.especialista LIKE '%{$especialista}%' ";
     if(isset($id_agenda)) $this->conditional_query.=" AND id_agenda = '$id_agenda' ";
-
     return $this->conditional_query;
   }
 
@@ -30,12 +28,12 @@ class Agenda {
 
   function GetAgenda($especialista="" , $id_agenda="" )
   {
-  
     $link = Conexion::Connect();
 
     $this->SQL = "
     
-      SELECT A.* , E.especialista ,E.color, C.nombre , C.primer_apellido , C.segundo_apellido 
+      SELECT A.* , E.especialista ,E.color, C.nombre , C.primer_apellido , 
+      C.segundo_apellido 
       
       FROM agenda AS A LEFT JOIN especialistas AS E
       ON A.id_especialista = E.id_especialista
@@ -48,8 +46,6 @@ class Agenda {
     $SQL_resp = mysqli_query($link , $this->SQL)or die(mysqli_error($link));
     
     return $SQL_resp;
-    
-
   }
 
   /* 
@@ -60,14 +56,10 @@ class Agenda {
   {
     $fila = 0;
     $events = [];
-
     $datos = $this->GetAgenda();
-
-
+    
     while ($dato = mysqli_fetch_array($datos)){
-      // var_dump($dato);
-      /* 
-      $events[$fila]['date'] = $dato['fecha']; */
+     
       $events[$fila]['title'] = $dato['nombre'];
       $events[$fila]['startTime'] = $dato['fecha']. " " .$dato['hora'];
       $events[$fila]['endTime'] = $dato['fecha']. " " .$dato['hora_fin'];
@@ -77,14 +69,9 @@ class Agenda {
       $events[$fila]['especialista'] = $dato['especialista'];
       $events[$fila]['color'] = $dato['color'];
       $events[$fila]['motivo'] = $dato['notas'];
-      /* 
-      ;  */
-
+      
       $fila++;
-  
     };
-
-    
 
     header('Content-type:application/json;charset=utf-8');
     return json_encode($events); 
