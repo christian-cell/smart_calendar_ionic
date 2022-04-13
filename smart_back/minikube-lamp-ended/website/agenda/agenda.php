@@ -1,19 +1,14 @@
 <?php
 
-/* POO */
 namespace smartCalendar;
 use smartCalendar\Conexion;
-
 require_once('../cors.php');
-
 require_once("../conexion.php");
 
 class Agenda {
 
   private string $conditional_query ;
   private $SQL ;
-
-
 
   /* 
   * creamos la condicion de la query
@@ -29,7 +24,9 @@ class Agenda {
     return $this->conditional_query;
   }
 
-
+  /* 
+  * traemos las agendas ddbb
+  */
 
   function GetAgenda($especialista="" , $id_agenda="" )
   {
@@ -54,6 +51,10 @@ class Agenda {
     
 
   }
+
+  /* 
+  * construimos y retornamos la respuesta del cliente
+  */
 
   public function RetornaAgendas():string
   {
