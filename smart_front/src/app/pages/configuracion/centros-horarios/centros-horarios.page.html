@@ -3,17 +3,21 @@
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
-    <ion-title>tarea_nueva</ion-title>
+    <ion-title>Horario del centro</ion-title>
   </ion-toolbar>
+  <ion-button (click)="GuardarHorarioCentro()" class="centros_horarios-boton-guardar" >
+    Guardar Horarios
+  </ion-button>
+
 </ion-header>
 
 <ion-content>
   <ion-list>
     
-  
+    <span style="display:none" > {{centro_horario.id_centro}} </span>
     <ion-item>
       <ion-label>Lunes apertura de mañana</ion-label>
-      <ion-select [(ngModel)]="lunes_apertura_manana" 
+      <ion-select [(ngModel)]="centro_horario.lunes_apertura_manana" 
         ok-text="Seleccionar" cancel-text="Cancelar">
       <ng-container *ngFor="let horario of horarios">
           <ion-select-option value="{{horario}}">{{horario}}</ion-select-option>
@@ -23,7 +27,7 @@
 
     <ion-item>
       <ion-label>Lunes cierre de mañana</ion-label>
-      <ion-select [(ngModel)]="lunes_cierre_manana" 
+      <ion-select [(ngModel)]="centro_horario.lunes_cierre_manana" 
         ok-text="Seleccionar" cancel-text="Cancelar">
       <ng-container *ngFor="let horario of horarios">
           <ion-select-option value="{{horario}}">{{horario}}</ion-select-option>
@@ -33,7 +37,7 @@
 
     <ion-item>
       <ion-label>Lunes apertura de tarde</ion-label>
-      <ion-select [(ngModel)]="lunes_apertura_tarde" 
+      <ion-select [(ngModel)]="centro_horario.lunes_apertura_tarde" 
         ok-text="Seleccionar" cancel-text="Cancelar">
       <ng-container *ngFor="let horario of horarios">
           <ion-select-option value="{{horario}}">{{horario}}</ion-select-option>
@@ -43,7 +47,7 @@
 
     <ion-item>
       <ion-label>Lunes cierre de tarde</ion-label>
-      <ion-select [(ngModel)]="lunes_cierre_tarde" 
+      <ion-select [(ngModel)]="centro_horario.lunes_cierre_tarde" 
         ok-text="Seleccionar" cancel-text="Cancelar">
       <ng-container *ngFor="let horario of horarios">
           <ion-select-option value="{{horario}}">{{horario}}</ion-select-option>
@@ -53,7 +57,7 @@
 
     <ion-item>
       <ion-label>Martes apertura de mañana</ion-label>
-      <ion-select [(ngModel)]="martes_apertura_manana" 
+      <ion-select [(ngModel)]="centro_horario.martes_apertura_manana" 
         ok-text="Seleccionar" cancel-text="Cancelar">
       <ng-container *ngFor="let horario of horarios">
           <ion-select-option value="{{horario}}">{{horario}}</ion-select-option>
@@ -63,7 +67,7 @@
 
     <ion-item>
       <ion-label>Martes cierre de mañana</ion-label>
-      <ion-select [(ngModel)]="martes_cierre_manana" 
+      <ion-select [(ngModel)]="centro_horario.martes_cierre_manana" 
         ok-text="Seleccionar" cancel-text="Cancelar">
       <ng-container *ngFor="let horario of horarios">
           <ion-select-option value="{{horario}}">{{horario}}</ion-select-option>
@@ -73,7 +77,7 @@
 
     <ion-item>
       <ion-label>Martes apertura de tarde</ion-label>
-      <ion-select [(ngModel)]="martes_apertura_tarde" 
+      <ion-select [(ngModel)]="centro_horario.martes_apertura_tarde" 
         ok-text="Seleccionar" cancel-text="Cancelar">
       <ng-container *ngFor="let horario of horarios">
           <ion-select-option value="{{horario}}">{{horario}}</ion-select-option>
@@ -83,7 +87,7 @@
 
     <ion-item>
       <ion-label>Martes cierre de tarde</ion-label>
-      <ion-select [(ngModel)]="martes_cierre_tarde" 
+      <ion-select [(ngModel)]="centro_horario.martes_cierre_tarde" 
         ok-text="Seleccionar" cancel-text="Cancelar">
       <ng-container *ngFor="let horario of horarios">
           <ion-select-option value="{{horario}}">{{horario}}</ion-select-option>
@@ -93,7 +97,7 @@
     
     <ion-item>
       <ion-label>Miercoles apertura de mañana</ion-label>
-      <ion-select [(ngModel)]="miercoles_apertura_manana" 
+      <ion-select [(ngModel)]="centro_horario.miercoles_apertura_manana" 
         ok-text="Seleccionar" cancel-text="Cancelar">
       <ng-container *ngFor="let horario of horarios">
           <ion-select-option value="{{horario}}">{{horario}}</ion-select-option>
@@ -103,7 +107,7 @@
 
     <ion-item>
       <ion-label>Miercoles cierre de mañana</ion-label>
-      <ion-select [(ngModel)]="miercoles_cierre_manana" 
+      <ion-select [(ngModel)]="centro_horario.miercoles_cierre_manana" 
         ok-text="Seleccionar" cancel-text="Cancelar">
       <ng-container *ngFor="let horario of horarios">
           <ion-select-option value="{{horario}}">{{horario}}</ion-select-option>
@@ -113,7 +117,7 @@
 
     <ion-item>
       <ion-label>Miercoles apertura de tarde</ion-label>
-      <ion-select [(ngModel)]="miercoles_apertura_tarde" 
+      <ion-select [(ngModel)]="centro_horario.miercoles_apertura_tarde" 
         ok-text="Seleccionar" cancel-text="Cancelar">
       <ng-container *ngFor="let horario of horarios">
           <ion-select-option value="{{horario}}">{{horario}}</ion-select-option>
@@ -123,7 +127,7 @@
 
     <ion-item>
       <ion-label>Miercoles cierre de tarde</ion-label>
-      <ion-select [(ngModel)]="miercoles_cierre_tarde" 
+      <ion-select [(ngModel)]="centro_horario.miercoles_cierre_tarde" 
         ok-text="Seleccionar" cancel-text="Cancelar">
       <ng-container *ngFor="let horario of horarios">
           <ion-select-option value="{{horario}}">{{horario}}</ion-select-option>
@@ -132,7 +136,7 @@
     </ion-item>
     <ion-item>
       <ion-label>Jueves apertura de mañana</ion-label>
-      <ion-select [(ngModel)]="jueves_apertura_manana" 
+      <ion-select [(ngModel)]="centro_horario.jueves_apertura_manana" 
         ok-text="Seleccionar" cancel-text="Cancelar">
       <ng-container *ngFor="let horario of horarios">
           <ion-select-option value="{{horario}}">{{horario}}</ion-select-option>
@@ -142,7 +146,7 @@
 
     <ion-item>
       <ion-label>Jueves cierre de mañana</ion-label>
-      <ion-select [(ngModel)]="jueves_cierre_manana" 
+      <ion-select [(ngModel)]="centro_horario.jueves_cierre_manana" 
         ok-text="Seleccionar" cancel-text="Cancelar">
       <ng-container *ngFor="let horario of horarios">
           <ion-select-option value="{{horario}}">{{horario}}</ion-select-option>
@@ -152,7 +156,7 @@
 
     <ion-item>
       <ion-label>Jueves apertura de tarde</ion-label>
-      <ion-select [(ngModel)]="jueves_apertura_tarde" 
+      <ion-select [(ngModel)]="centro_horario.jueves_apertura_tarde" 
         ok-text="Seleccionar" cancel-text="Cancelar">
       <ng-container *ngFor="let horario of horarios">
           <ion-select-option value="{{horario}}">{{horario}}</ion-select-option>
@@ -162,7 +166,7 @@
 
     <ion-item>
       <ion-label>Jueves cierre de tarde</ion-label>
-      <ion-select [(ngModel)]="jueves_cierre_tarde" 
+      <ion-select [(ngModel)]="centro_horario.jueves_cierre_tarde" 
         ok-text="Seleccionar" cancel-text="Cancelar">
       <ng-container *ngFor="let horario of horarios">
           <ion-select-option value="{{horario}}">{{horario}}</ion-select-option>
@@ -172,7 +176,7 @@
 
     <ion-item>
       <ion-label>Viernes apertura de mañana</ion-label>
-      <ion-select [(ngModel)]="viernes_apertura_manana" 
+      <ion-select [(ngModel)]="centro_horario.viernes_apertura_manana" 
         ok-text="Seleccionar" cancel-text="Cancelar">
       <ng-container *ngFor="let horario of horarios">
           <ion-select-option value="{{horario}}">{{horario}}</ion-select-option>
@@ -182,7 +186,7 @@
 
     <ion-item>
       <ion-label>Viernes cierre de mañana</ion-label>
-      <ion-select [(ngModel)]="viernes_cierre_manana" 
+      <ion-select [(ngModel)]="centro_horario.viernes_cierre_manana" 
         ok-text="Seleccionar" cancel-text="Cancelar">
       <ng-container *ngFor="let horario of horarios">
           <ion-select-option value="{{horario}}">{{horario}}</ion-select-option>
@@ -192,7 +196,7 @@
 
     <ion-item>
       <ion-label>Viernes apertura de tarde</ion-label>
-      <ion-select [(ngModel)]="viernes_apertura_tarde" 
+      <ion-select [(ngModel)]="centro_horario.viernes_apertura_tarde" 
         ok-text="Seleccionar" cancel-text="Cancelar">
       <ng-container *ngFor="let horario of horarios">
           <ion-select-option value="{{horario}}">{{horario}}</ion-select-option>
@@ -202,7 +206,7 @@
 
     <ion-item>
       <ion-label>Viernes cierre de tarde</ion-label>
-      <ion-select [(ngModel)]="viernes_cierre_tarde" 
+      <ion-select [(ngModel)]="centro_horario.viernes_cierre_tarde" 
         ok-text="Seleccionar" cancel-text="Cancelar">
       <ng-container *ngFor="let horario of horarios">
           <ion-select-option value="{{horario}}">{{horario}}</ion-select-option>
@@ -212,7 +216,7 @@
 
     <ion-item>
       <ion-label>Sabado apertura de mañana</ion-label>
-      <ion-select [(ngModel)]="sabado_apertura_manana" 
+      <ion-select [(ngModel)]="centro_horario.sabado_apertura_manana" 
         ok-text="Seleccionar" cancel-text="Cancelar">
       <ng-container *ngFor="let horario of horarios">
           <ion-select-option value="{{horario}}">{{horario}}</ion-select-option>
@@ -222,7 +226,7 @@
 
     <ion-item>
       <ion-label>Sabado cierre de mañana</ion-label>
-      <ion-select [(ngModel)]="sabado_cierre_manana" 
+      <ion-select [(ngModel)]="centro_horario.sabado_cierre_manana" 
         ok-text="Seleccionar" cancel-text="Cancelar">
       <ng-container *ngFor="let horario of horarios">
           <ion-select-option value="{{horario}}">{{horario}}</ion-select-option>
@@ -232,7 +236,7 @@
 
     <ion-item>
       <ion-label>Sabado apertura de tarde</ion-label>
-      <ion-select [(ngModel)]="sabado_apertura_tarde" 
+      <ion-select [(ngModel)]="centro_horario.sabado_apertura_tarde" 
         ok-text="Seleccionar" cancel-text="Cancelar">
       <ng-container *ngFor="let horario of horarios">
           <ion-select-option value="{{horario}}">{{horario}}</ion-select-option>
@@ -242,7 +246,7 @@
 
     <ion-item>
       <ion-label>Sabado cierre de tarde</ion-label>
-      <ion-select [(ngModel)]="sabado_cierre_tarde" 
+      <ion-select [(ngModel)]="centro_horario.sabado_cierre_tarde" 
         ok-text="Seleccionar" cancel-text="Cancelar">
       <ng-container *ngFor="let horario of horarios">
           <ion-select-option value="{{horario}}">{{horario}}</ion-select-option>
@@ -252,7 +256,7 @@
 
     <ion-item>
       <ion-label>Domingo apertura de mañana</ion-label>
-      <ion-select [(ngModel)]="domingo_apertura_manana" 
+      <ion-select [(ngModel)]="centro_horario.domingo_apertura_manana" 
         ok-text="Seleccionar" cancel-text="Cancelar">
       <ng-container *ngFor="let horario of horarios">
           <ion-select-option value="{{horario}}">{{horario}}</ion-select-option>
@@ -262,7 +266,7 @@
 
     <ion-item>
       <ion-label>Domingo cierre de mañana</ion-label>
-      <ion-select [(ngModel)]="domingo_cierre_manana" 
+      <ion-select [(ngModel)]="centro_horario.domingo_cierre_manana" 
         ok-text="Seleccionar" cancel-text="Cancelar">
       <ng-container *ngFor="let horario of horarios">
           <ion-select-option value="{{horario}}">{{horario}}</ion-select-option>
@@ -272,7 +276,7 @@
 
     <ion-item>
       <ion-label>Domingo apertura de tarde</ion-label>
-      <ion-select [(ngModel)]="domingo_apertura_tarde" 
+      <ion-select [(ngModel)]="centro_horario.domingo_apertura_tarde" 
         ok-text="Seleccionar" cancel-text="Cancelar">
       <ng-container *ngFor="let horario of horarios">
           <ion-select-option value="{{horario}}">{{horario}}</ion-select-option>
@@ -282,7 +286,7 @@
 
     <ion-item>
       <ion-label>Domingo cierre de tarde</ion-label>
-      <ion-select [(ngModel)]="domingo_cierre_tarde" 
+      <ion-select [(ngModel)]="centro_horario.domingo_cierre_tarde" 
         ok-text="Seleccionar" cancel-text="Cancelar">
       <ng-container *ngFor="let horario of horarios">
           <ion-select-option value="{{horario}}">{{horario}}</ion-select-option>

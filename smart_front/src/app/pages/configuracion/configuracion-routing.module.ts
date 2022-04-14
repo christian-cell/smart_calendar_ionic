@@ -15,6 +15,10 @@ const routes: Routes = [
   {
     path: 'tarea-nueva',
     loadChildren: () => import('./tarea-nueva/tarea-nueva.module').then( m => m.TareaNuevaPageModule)
+  },
+  {
+    path: 'centros-horarios',
+    loadChildren: () => import('./centros-horarios/centros-horarios.module').then( m => m.CentrosHorariosPageModule)
   }
 ];
 
