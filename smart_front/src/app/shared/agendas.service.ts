@@ -11,8 +11,10 @@ export class AgendasService {
 
   GetAgendasGata(){
     
+    let token = window.localStorage.getItem('token');
+    let id_centro = window.localStorage.getItem('id_centro');
 
-    return this.http.get(`${environment.url}/agenda/agenda.php`,
+    return this.http.get(`${environment.url}/agenda/agenda.php?token=${token}&&id_centro=${id_centro}`,
       {responseType:'text'}
     )
 

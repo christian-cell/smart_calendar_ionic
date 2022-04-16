@@ -2,8 +2,10 @@
 
 namespace website\agenda\agenda;
 use website\conexion\Conexion;
+use website\usuarios\login\LoginValidator;
 require_once('../cors.php');
 require_once("../conexion.php");
+require_once("../usuarios/login_validator.php");
 
 class Agenda {
 
@@ -52,8 +54,11 @@ class Agenda {
   * construimos y retornamos la respuesta del cliente
   */
 
-  public function RetornaAgendas():string
+  public function RetornaAgendas($token , $id_centro):string
   {
+
+    LoginValidator::validateSession($token);
+
     $fila = 0;
     $events = [];
     $datos = $this->GetAgenda();
@@ -81,6 +86,6 @@ class Agenda {
 
 $agenda = new Agenda();
 
-echo $agenda->RetornaAgendas( /* $especialista = $_GET['especialista'] , $id_agenda = $_GET['agenda_id'] */ )
+echo $agenda->RetornaAgendas( $token=$_GET['token'] , $id_centro=$_GET['id_centro'] /* $especialista = $_GET['especialista'] , $id_agenda = $_GET['agenda_id'] */ )
 
 ?>

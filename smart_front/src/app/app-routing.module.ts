@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { AuthGuardGuard } from './auth-guard.guard';
 
 const routes: Routes = [
   /* {
@@ -9,15 +10,15 @@ const routes: Routes = [
   }, */
   
   {
-    path: 'folder/:id',
+    path: 'folder/:id', canActivate:[AuthGuardGuard],
     loadChildren: () => import('./folder/folder.module').then( m => m.FolderPageModule)
   },
   {
-    path: 'calendar',
+    path: 'calendar',canActivate:[AuthGuardGuard],
     loadChildren: () => import('./pages/calendar/calendar.module').then( m => m.CalendarPageModule)
   },
   {
-    path: 'cal-modal',
+    path: 'cal-modal',canActivate:[AuthGuardGuard],
     loadChildren: () => import('./pages/cal-modal/cal-modal.module').then( m => m.CalModalPageModule)
   },
   
@@ -26,11 +27,11 @@ const routes: Routes = [
     loadChildren: () => import('./pages/agenda-edit-popover/agenda-edit-popover.module').then( m => m.AgendaEditPopoverPageModule)
   } ,*/
   {
-    path: 'agenda-edit',
+    path: 'agenda-edit',canActivate:[AuthGuardGuard],
     loadChildren: () => import('./modals/agenda-edit/agenda-edit.module').then( m => m.AgendaEditPageModule)
   },  
   {
-    path: 'configuracion',
+    path: 'configuracion',canActivate:[AuthGuardGuard],
     loadChildren: () => import('./pages/configuracion/configuracion.module').then( m => m.ConfiguracionPageModule)
   },
   {
@@ -40,6 +41,10 @@ const routes: Routes = [
   {
     path: 'login',
     loadChildren: () => import('./pages/login/login.module').then( m => m.LoginPageModule)
+  },
+  {
+    path: 'logout',
+    loadChildren: () => import('./pages/logout/logout.module').then( m => m.LogoutPageModule)
   },
 ];
 
